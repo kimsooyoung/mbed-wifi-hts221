@@ -1,0 +1,7 @@
+BUILD\DISCO_L475VG_IOT01A\GCC_ARM\mbed-os\features\nanostack\sal-stack-nanostack-eventloop\source\minar_hal_timer.o: \
+ mbed-os\features\nanostack\sal-stack-nanostack-eventloop\source\minar_hal_timer.cpp \
+ BUILD\DISCO_L475VG_IOT01A\GCC_ARM\mbed_config.h \
+ mbed-os/features/frameworks/nanostack-libservice/mbed-client-libservice/ns_types.h \
+ mbed-os/features/nanostack/sal-stack-nanostack-eventloop/nanostack-event-loop/platform/arm_hal_timer.h \
+ mbed-os/features/nanostack/sal-stack-nanostack-eventloop/nanostack-event-loop/platform/eventloop_config.h \
+ mbed-os/features/frameworks/nanostack-libservice/mbed-client-libservice/platform/arm_hal_interrupt.h
