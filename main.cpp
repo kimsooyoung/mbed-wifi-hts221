@@ -11,28 +11,40 @@ char Server_IP[] = "192.168.0.6";
 int Server_PORT = 8000;
 
 Thread thread;
+float value1, value2;
 
-void thread2(ISM43362Interface *net){
+void thread2(){
     TCPSocket socket;
     nsapi_error_t response;
 
-    socket.open(net);
-    response = socket.connect("192.168.255.40", 8000);
+    socket.open(&wifi);
+    response = socket.connect(Server_IP, Server_PORT);
     if(0 != response) {
         printf("Error connecting: %d\n", response);
         socket.close();
         return;
     }
-
-    char rbuffer[64];
-    response = socket.recv(rbuffer, sizeof rbuffer);
-    if (response < 0) {
-        printf("Error receiving data: %d\n", response);
-    } else {
-        printf("recv %d [%.*s]\r\n", response, strstr(rbuffer, "\r\n")-rbuffer, rbuffer);
+    // Send a simple http request
+    char sbuffer[50];
+    while(1){
+        sprintf(sbuffer, "temperature : %f humidity : %f\r\n", value1, value2);
+        nsapi_size_t size = strlen(sbuffer);
+        response = 0;
+        while(size)
+        {
+            response = socket.send(sbuffer+response, size);
+            if (response < 0) {
+                printf("Error sending data: %d\n", response);
+                socket.close();
+                return;
+            } else {
+                size -= response;
+                // Check if entire message was sent or not
+                printf("sent %d [%.*s]\r\n", response, strstr(sbuffer, "\r\n")-sbuffer, sbuffer);
+            }
+        }
+        wait(3);
     }
- 
-    // Close the socket to return its memory and bring down the network interface
     socket.close();
 }
 
@@ -48,7 +60,8 @@ void socket_demo(ISM43362Interface *net, float value1, float value2){
         return;
     }
     // Send a simple http request
-    char sbuffer[] = "GET / HTTP/1.1\r\nHost: www.arm.com\r\n\r\n";
+    char sbuffer[50];
+    sprintf(sbuffer, "temperature : %f humidity : %f\r\n", value1, value2);
     nsapi_size_t size = strlen(sbuffer);
     response = 0;
     while(size)
@@ -80,11 +93,12 @@ void socket_demo(ISM43362Interface *net, float value1, float value2){
 
 int main(){
     uint8_t id;
-    float value1, value2;
     char buffer[20] = "";
     hum_temp.init(NULL);
     hum_temp.enable();
     hum_temp.read_id(&id);
+    hum_temp.get_temperature(&value1);
+    hum_temp.get_humidity(&value2);
 
     printf("HTS221:  [temp] %.2f C, [hum]   %.2f%%\r\n", value1, value2);
 
@@ -101,6 +115,7 @@ int main(){
     printf("Netmask: %s\r\n", wifi.get_netmask());
     printf("Gateway: %s\r\n", wifi.get_gateway());
     printf("RSSI: %d\r\n", wifi.get_rssi());
+    thread.start(thread2);
     
     while(1){
         hum_temp.get_temperature(&value1);
@@ -109,7 +124,7 @@ int main(){
         buffer[1] = (char)value2;
 
         printf("HTS221:  [temp] %.2f C, [hum]   %.2f%%\r\n", value1, value2);
-        socket_demo(&wifi, value1, value2);
+        //socket_demo(&wifi, value1, value2);
         wait(0.5);
-    }   
+    }
 }

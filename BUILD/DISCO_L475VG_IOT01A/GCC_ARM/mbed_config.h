@@ -24,6 +24,18 @@
 // Configuration parameters
 #define CLOCK_SOURCE                                                          USE_PLL_MSI                                                                                      // set by target:DISCO_L475VG_IOT01A
 #define LPTICKER_DELAY_TICKS                                                  4                                                                                                // set by target:DISCO_L475VG_IOT01A
+#define MBED_CONF_APP_WIFI_DATAREADY                                          PE_1                                                                                             // set by application
+#define MBED_CONF_APP_WIFI_PASSWORD                                           "tgkace1375"                                                                                     // set by application
+#define MBED_CONF_APP_WIFI_RESET                                              PE_8                                                                                             // set by application
+#define MBED_CONF_APP_WIFI_RX                                                 D0                                                                                               // set by application
+#define MBED_CONF_APP_WIFI_SHIELD                                             internal                                                                                         // set by application
+#define MBED_CONF_APP_WIFI_SPI_MISO                                           PC_11                                                                                            // set by application
+#define MBED_CONF_APP_WIFI_SPI_MOSI                                           PC_12                                                                                            // set by application
+#define MBED_CONF_APP_WIFI_SPI_NSS                                            PE_0                                                                                             // set by application
+#define MBED_CONF_APP_WIFI_SPI_SCLK                                           PC_10                                                                                            // set by application
+#define MBED_CONF_APP_WIFI_SSID                                               "kkkk1402"                                                                                       // set by application
+#define MBED_CONF_APP_WIFI_TX                                                 D1                                                                                               // set by application
+#define MBED_CONF_APP_WIFI_WAKEUP                                             PB_12                                                                                            // set by application
 #define MBED_CONF_ATMEL_RF_ASSUME_SPACED_SPI                                  1                                                                                                // set by library:atmel-rf[STM]
 #define MBED_CONF_ATMEL_RF_FULL_SPI_SPEED                                     7500000                                                                                          // set by library:atmel-rf
 #define MBED_CONF_ATMEL_RF_FULL_SPI_SPEED_BYTE_SPACING                        250                                                                                              // set by library:atmel-rf
@@ -167,7 +179,7 @@
 #define MBED_CONF_PLATFORM_FORCE_NON_COPYABLE_ERROR                           0                                                                                                // set by library:platform
 #define MBED_CONF_PLATFORM_MAX_ERROR_FILENAME_LEN                             16                                                                                               // set by library:platform
 #define MBED_CONF_PLATFORM_POLL_USE_LOWPOWER_TIMER                            0                                                                                                // set by library:platform
-#define MBED_CONF_PLATFORM_STDIO_BAUD_RATE                                    9600                                                                                             // set by library:platform
+#define MBED_CONF_PLATFORM_STDIO_BAUD_RATE                                    115200                                                                                           // set by application[*]
 #define MBED_CONF_PLATFORM_STDIO_BUFFERED_SERIAL                              0                                                                                                // set by library:platform
 #define MBED_CONF_PLATFORM_STDIO_CONVERT_NEWLINES                             0                                                                                                // set by library:platform
 #define MBED_CONF_PLATFORM_STDIO_CONVERT_TTY_NEWLINES                         0                                                                                                // set by library:platform

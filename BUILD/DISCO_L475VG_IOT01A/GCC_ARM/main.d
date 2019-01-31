@@ -229,4 +229,13 @@ BUILD\DISCO_L475VG_IOT01A\GCC_ARM\main.o: main.cpp \
  mbed-os/platform/mbed_mpu_mgmt.h mbed-os/hal/mpu_api.h \
  mbed-os/platform/ScopedRamExecutionLock.h mbed-os/platform/mbed_stats.h \
  mbed-os/platform/Callback.h mbed-os/platform/FunctionPointer.h \
- mbed-os/platform/ScopedLock.h stats_report.h
+ mbed-os/platform/ScopedLock.h HTS221/HTS221Sensor.h \
+ HTS221/X_NUCLEO_COMMON/DevI2C/DevI2C.h mbed-os/hal/pinmap.h \
+ HTS221/HTS221_driver.h HTS221/ST_INTERFACES/Sensors/HumiditySensor.h \
+ HTS221/ST_INTERFACES/Common/Component.h \
+ HTS221/ST_INTERFACES/Sensors/TempSensor.h \
+ mbed-os/features/netsocket/TCPSocket.h wifi-ism43362/ISM43362Interface.h \
+ wifi-ism43362/ISM43362/ISM43362.h \
+ wifi-ism43362/ISM43362/ATParser/ATParser.h \
+ wifi-ism43362/ISM43362/ATParser/BufferedSpi/BufferedSpi.h \
+ wifi-ism43362/ISM43362/ATParser/BufferedSpi/Buffer/MyBuffer.h
